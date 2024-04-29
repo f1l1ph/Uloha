@@ -1,0 +1,6 @@
+@Zadanie_Masarik_HostAddress = http://localhost:5173
+
+GET {{Zadanie_Masarik_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
