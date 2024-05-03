@@ -1,6 +1,8 @@
+using ClassLibrary1.Context;
+using ClassLibrary1.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Zadanie_Masarik.Data;
-using Zadanie_Masarik.Services;
+using ClassLibrary1.Application.Book;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("db")));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddBookCommandHandler).Assembly));
 
-builder.Services.AddScoped<BookService>();
+builder.Services.AddTransient<IBookRepository, BookRepository>();
+
+builder.Services.AddDbContext<BookContext>(
+    options => options.UseNpgsql(builder.Configuration.GetConnectionString("db")));
 
 var app = builder.Build();
 

@@ -1,22 +1,22 @@
-﻿using System.Collections;
+﻿using ClassLibrary1.Application.Book;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Zadanie_Masarik.Data;
-using Zadanie_Masarik.Services;
 
 namespace Zadanie_Masarik.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class BookController(BookService bookService) : Controller
+public class BookController(IMediator mediator) : Controller
 {
     #region create
     [HttpPost("AddBook")]
-    public async Task<Book?> AddBook(Book book)
+    public async Task<IActionResult> AddBook(AddBookCommand command)
     {
-        return await bookService.AddBook(book);
+        var bookId = await mediator.Send(command);
+        return Ok(bookId);
     }
     #endregion
-
+    /*
     #region read
     [HttpGet($"GetBook/{{id:int}}")]
     public async Task<Book?> GetById(int id)
@@ -45,5 +45,5 @@ public class BookController(BookService bookService) : Controller
     {
         return await bookService.DeleteBookById(id);
     }
-    #endregion
+    #endregion*/
 }
