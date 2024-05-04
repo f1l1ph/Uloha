@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ClassLibrary1.Application.Book
 {
-    public class AddBookCommandHandler(IBookRepository bookRepository) : IRequestHandler<AddBookCommand, int>
+    public class AddBookCommandHandler(IBookRepositoryWrite bookRepositoryWrite) : IRequestHandler<AddBookCommand, int>
     {
         public async Task<int> Handle(AddBookCommand request, CancellationToken cancellationToken)
         {
@@ -13,7 +13,7 @@ namespace ClassLibrary1.Application.Book
                 Author = request.Author,
             };
 
-            return await bookRepository.Add(book);
+            return await bookRepositoryWrite.Add(book);
         }
     }
 }

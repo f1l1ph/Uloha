@@ -2,6 +2,7 @@ using ClassLibrary1.Context;
 using ClassLibrary1.Repositories;
 using Microsoft.EntityFrameworkCore;
 using ClassLibrary1.Application.Book;
+using Microsoft.Extensions.Options;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,9 +16,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddBookCommand).Assembly));
 
-builder.Services.AddTransient<IBookRepository, BookRepository>();
+builder.Services.AddTransient<IBookRepositoryWrite, BookRepositoryWrite>();
+builder.Services.AddTransient<IBookRepositoryRead, BookRepositoryRead>();
 
-builder.Services.AddDbContext<BookContext>(
+builder.Services.AddDbContext<BookContextWrite>(// context for write db
+    options => options.UseNpgsql(builder.Configuration.GetConnectionString("db")));
+
+builder.Services.AddDbContext<BookContextRead>(// context for read db
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("db")));
 
 var app = builder.Build();

@@ -10,7 +10,7 @@ using ClassLibrary1.Context;
 
 namespace Zadanie_Masarik.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(BookContextWrite))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

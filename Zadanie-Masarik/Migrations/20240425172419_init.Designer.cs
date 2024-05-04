@@ -11,7 +11,7 @@ using ClassLibrary1.Context;
 
 namespace Zadanie_Masarik.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(BookContextWrite))]
     [Migration("20240425172419_init")]
     partial class init
     {

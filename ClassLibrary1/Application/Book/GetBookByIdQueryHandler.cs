@@ -9,7 +9,7 @@ using MediatR;
 
 namespace ClassLibrary1.Application.Book
 {
-    public class GetBookByIdQueryHandler(IBookRepository bookRepository):IRequestHandler<GetBookByIdQuery, BookEntity>
+    public class GetBookByIdQueryHandler(IBookRepositoryRead bookRepository):IRequestHandler<GetBookByIdQuery, BookEntity>
     {
         public Task<BookEntity> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
         {

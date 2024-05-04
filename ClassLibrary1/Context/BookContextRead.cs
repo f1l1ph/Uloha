@@ -1,12 +1,11 @@
 ﻿using ClassLibrary1.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace ClassLibrary1.Context
 {
-    public class BookContext : DbContext
+    public class BookContextRead : DbContext
     {
-        public BookContext(DbContextOptions<BookContext> options) : base(options)
+        public BookContextRead(DbContextOptions<BookContextRead> options) : base(options)
         {
 
         }

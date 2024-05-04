@@ -1,10 +1,7 @@
 ﻿using ClassLibrary1.Application.Book;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Net;
 using ClassLibrary1.Entities;
-using ClassLibrary1.Repositories;
 
 namespace Zadanie_Masarik.Controllers;
 
