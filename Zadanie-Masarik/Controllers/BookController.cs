@@ -1,6 +1,10 @@
 ﻿using ClassLibrary1.Application.Book;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Net;
+using ClassLibrary1.Entities;
+using ClassLibrary1.Repositories;
 
 namespace Zadanie_Masarik.Controllers;
 
@@ -16,34 +20,36 @@ public class BookController(IMediator mediator) : Controller
         return Ok(bookId);
     }
     #endregion
-    /*
+    
     #region read
-    [HttpGet($"GetBook/{{id:int}}")]
-    public async Task<Book?> GetById(int id)
+    [HttpGet($"GetBook{{id:int}}")]
+    public async Task<BookEntity?> GetById(int id)
     {
-        return await bookService.GetBookById(id);
+        return await mediator.Send(new GetBookByIdQuery(id));
     }
 
-    [HttpGet($"GetBooks/")]
-    public async Task<IEnumerable<Book>> GetBooks()
+    [HttpGet("GetBooks")]
+    public async Task<IEnumerable<BookEntity>> GetBooks()
     {
-        return await bookService.GetBooks();
+        return await mediator.Send(new GetAllBooksQuery());
     }
     #endregion
-
+    
     #region update
-    [HttpPost($"UpdateBook/{{id:int}}")]
-    public async Task<Book?> UpdateBook(int id, Book book)
+    [HttpPost("UpdateBook")]
+    public async Task<int> UpdateBook(UpdateBookCommand command)
     {
-        return await bookService.UpdateBook(id, book);
+        return await mediator.Send(command);
     }
     #endregion
-
+    
     #region delete
-    [HttpDelete($"DeleteBook/{{id:int}}")]
-    public async Task<bool> DeleteBookById(int id)
-    {
-        return await bookService.DeleteBookById(id);
+    [HttpDelete($"DeleteBook")]
+    public async Task<IActionResult> DeleteBookById(DeleteBookCommand command)
+    { 
+        await mediator.Send(command);
+
+        return Ok("Successfully deleted");
     }
-    #endregion*/
+    #endregion
 }

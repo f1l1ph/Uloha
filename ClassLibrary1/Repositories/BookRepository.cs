@@ -8,9 +8,7 @@ namespace ClassLibrary1.Repositories
     {
         public async Task<IEnumerable<BookEntity>> GetAll()
         {
-            var books = await context.Books.ToListAsync();
-
-            return books;
+            return await context.Books.ToListAsync();
         }
 
         public async Task<BookEntity> GetById(int id)
@@ -27,7 +25,7 @@ namespace ClassLibrary1.Repositories
             return book.Id;
         }
 
-        public async Task Update(BookEntity book)
+        public async Task<int> Update(BookEntity book)
         {
             var dbBook = await GetById(book.Id);
 
@@ -36,14 +34,16 @@ namespace ClassLibrary1.Repositories
             dbBook.Id = book.Id;
 
             var changesSaved = await context.SaveChangesAsync();
+            return book.Id;
         }
 
-        public async Task Delete(int id)
+        public async Task<int> Delete(int id)
         {
             var dbBook = await GetById(id);
 
             context.Books.Remove(dbBook);
             var changesSaved = await context.SaveChangesAsync();
+            return id;
         }
     }
 }

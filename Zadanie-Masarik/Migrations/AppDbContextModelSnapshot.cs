@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Zadanie_Masarik.Context;
+using ClassLibrary1.Context;
 
 
 #nullable disable
 
 namespace Zadanie_Masarik.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(BookContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

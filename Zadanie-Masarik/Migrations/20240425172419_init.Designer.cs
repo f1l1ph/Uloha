@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Zadanie_Masarik.Context;
+using ClassLibrary1.Context;
 
 
 #nullable disable
 
 namespace Zadanie_Masarik.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(BookContext))]
     [Migration("20240425172419_init")]
     partial class init
     {

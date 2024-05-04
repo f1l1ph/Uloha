@@ -7,7 +7,7 @@ namespace ClassLibrary1.Repositories
         Task<IEnumerable<BookEntity>> GetAll();
         Task<BookEntity> GetById(int id);
         Task<int> Add(BookEntity product);
-        Task Update(BookEntity product);
-        Task Delete(int id);
+        Task<int> Update(BookEntity product);
+        Task<int> Delete(int id);
     }
 }
